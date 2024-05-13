@@ -205,3 +205,9 @@ az keyvault set-policy -n laguduva-l1-key-vault-v2 --object-id 6c1ddb85-07c0-47c
 
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org azure-keyvault-secrets==4
 
+The endpoint for your Azure AI Services resource
+The name of your Azure Key Vault resource
+The tenant for your service principal
+The appId for your service principal
+The password for your service principal
+
