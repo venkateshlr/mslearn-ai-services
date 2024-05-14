@@ -41,7 +41,7 @@ Above command will create service prinipal account to the subscription ID under 
 {
   "appId": "b473afe3-d0a2-4988-a0b4-2dc25367be7f",
   "displayName": "https://laguduva-l1-azure-instance.cognitiveservices.azure.com://CS-SUB-0468",
-  "password": "et-8Q~C4w2e3npXPwU0Wdp2aUvqYXq6so1VsxdBC",
+  "password": "sp-password",
   "tenant": "274102ec-cd24-4af2-a4c2-832941ce526f"
 }
 
