@@ -1,10 +1,3 @@
 studentplpww [ ~ ]$ az cognitiveservices account keys list --name laguduva-l1-instance --resource-group AI-102
-{
-  "key1": "6f5cf7778c6c471dbbec3bb26dc870a2",
-  "key2": "c2f2a1d2b960481a80574cca4601aff0"
-}
-
-
 curl -X POST "https://laguduva-l1-instance.cognitiveservices.azure.com/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: 6f5cf7778c6c471dbbec3bb26dc870a2" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
-
 Under multi service account, Created an alert and metrices to log the call and it's count.
