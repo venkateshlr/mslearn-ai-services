@@ -1,0 +1,73 @@
+Skip to main content
+go deploy
+AI-102 | Module 1
+
+AI-102 | Module 1
+Home
+Lab Guide
+Microsoft Learn
+ Lab Guide
+Monitor Azure AI Services
+Azure AI Services can be a critical part of an overall application infrastructure. It's important to be able to monitor activity and get alerted to issues that may need attention.
+
+Configure an alert
+Let's start monitoring by defining an alert rule so you can detect activity in your Azure AI services resource.
+
+In the Azure portal, go to your Azure AI services resource and view its Alerts page (in the Monitoring section).
+
+Select + Create dropdown, and select Alert rule
+
+In the Create an alert rule page, under Scope, verify that the your Azure AI services resource is listed. (Close Select a signal pane if open)
+
+Select Condition tab, and select on the See all signals link to show the Select a signal pane that appears on the right, where you can select a signal type to monitor.
+
+In the Signal type list, scroll down to the Activity Log section, and then select List Keys (Cognitive Services API Account). Then select Apply.
+
+Review the activity over the past 6 hours.
+
+Select the Actions tab. Note that you can specify an action group. This enables you to configure automated actions when an alert is fired - for example, sending an email notification. We won't do that in this exercise; but it can be useful to do this in a production environment.
+
+In the Details tab, set the Alert rule name to Key List Alert.
+
+Select Review + create.
+
+Review the configuration for the alert. Select Create and wait for the alert rule to be created.
+
+Now you can use the following command to get the list of Azure AI services keys, replacing <resourceName> with the name of your Azure AI services resource, and <resourceGroup> with the name of the resource group in which you created it.
+
+az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
+The command returns a list of the keys for your Azure AI services resource.
+
+Note If you haven't logged into Azure CLI, you may need to run az login before the list keys command will work.
+
+Switch back to the browser containing the Azure portal, and refresh your Alerts page. You should see a Sev 4 alert listed in the table (if not, wait up to five minutes and refresh again).
+
+Select the alert to see its details.
+
+Visualize a metric
+As well as defining alerts, you can view metrics for your Azure AI services resource to monitor its utilization.
+
+In the Azure portal, in the page for your Azure AI services resource, select Metrics (in the Monitoring section).
+
+If there is no existing chart, select + New chart. Then in the Metric list, review the possible metrics you can visualize and select Total Calls.
+
+In the Aggregation list, select Count. This will enable you to monitor the total calls to you Azure AI Service resource; which is useful in determining how much the service is being used over a period of time.
+
+To generate some requests to your Azure AI service, you will use curl - a command line tool for HTTP requests. In your editor, within the 03-monitor-ai-services folder, open rest-test.cmd and edit the curl command it contains (shown below), replacing <yourEndpoint> and <yourKey> with your endpoint URI and Key1 key to use the Text Analytics API in your Azure AI services resource.
+
+curl -X POST "<your-endpoint>/language/:analyze-text?api-version=2023-04-01" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <your-key>" --data-ascii "{'analysisInput':{'documents':[{'id':1,'text':'hello'}]}, 'kind': 'LanguageDetection'}"
+Save your changes. Right click the 03-monitor-ai-services folder and select Open in Integrated Terminal and then run the following command:
+
+./rest-test.cmd
+The command returns a JSON document containing information about the language detected in the input data (which should be English).
+
+Re-run the rest-test command multiple times to generate some call activity (you can use the ^ key to cycle through previous commands).
+
+Return to the Metrics page in the Azure portal and refresh the Total Calls count chart. It may take a few minutes for the calls you made using curl to be reflected in the chart - keep refreshing the chart until it updates to include them.
+
+More information
+
+One of the options for monitoring Azure AI services is to use diagnostic logging. Once enabled, diagnostic logging captures rich information about your Azure AI services resource usage, and can be a useful monitoring and debugging tool. It can take over an hour after setting up diagnostic logging to generate any information, which is why we haven't explored it in this exercise; but you can learn more about it in the Azure AI Services documentation.
+
+ 01:58:391 hour and 58 minutes remaining on your lab session
+Keyboard released from VM
